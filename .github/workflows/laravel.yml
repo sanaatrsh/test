@@ -1,0 +1,37 @@
+name: Deploy Laravel to Hostinger
+
+on:
+  push:
+    branches:
+      - master  # أي دفع على فرع master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ جلب الكود من GitHub
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ إعداد PHP
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'   # عدلي حسب نسخة مشروعك
+          extensions: mbstring, bcmath, curl, mysql
+
+      # 3️⃣ تثبيت Composer
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      # 4️⃣ إعداد SSH
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDJ01b8Knqq+6sIMb3DuLmwKDQah75LY83so+1fDMlPQAsQ+XSGyH+AYPDvJAWN5HLpgUSJ1L3DSkYmvf/w6pA3yz+VNYofRBNPij2aK+qPRscU+5gHQD2VemqKp3UahM+ERWhtHbldhvaZPqVRqXcHN5Ze8P1iYfCO69jU8bNlWl7VZzgBQkEtE12K1XcVIXKDuK5Z/+ar2J+M6/wtKOfpeLLygcj9K6v+Gl3irEGk5NLcvvm+ZAbISM0WwnHAUl5MEVrnJbMMGws5dzx48McLFTv4MzAvmJFrPDuQh7lhRMpRFogjRbhcgcwgF1rdKzXJcBlKqrVZ4HEl3MVsrO8bga5Op4ObinryAN+p2XaPWFcEBmACRLWgdQ92nvlVQSog6LRcUjBvpm44LigcKCR0th4i4U1BqaUhPmUSepiL9JtU6m+IA/3SzRj/y8V4Ciu2gxEaF47Ajj/5LGTe7He3inMynmJXH+L3I280qVIAxADzwX8CFJ708VhQZAffwfE= u629306199@us-bos-web1712.main-hosting.eu
+
+      # 5️⃣ نشر الكود على Hostinger
+      - name: Deploy to Hostinger
+        run: |
+          ssh -p 65002 u629306199@88.223.85.64 "cd domains/peru-horse-360798.hostingersite.com/public_html && git pull origin master && composer install --no-dev --optimize-autoloader && php artisan migrate --force && php artisan config:cache && php artisan route:cache"
