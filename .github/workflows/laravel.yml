@@ -38,7 +38,13 @@ jobs:
             ohTxviYgY6njAR/chW9mAAAAFnNhbmFhdHJhc2gwOUBnbWFpbC5jb20BAgMEBQYH
             -----END OPENSSH PRIVATE KEY-----
 
-      # 5️⃣ نشر الكود على Hostinger
+      # 5️⃣ إضافة Hostinger إلى known_hosts
+      - name: Add Hostinger to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p 65002 88.223.85.64 >> ~/.ssh/known_hosts
+
+      # 6️⃣ نشر الكود على Hostinger
       - name: Deploy to Hostinger
         run: |
           ssh -p 65002 u629306199@88.223.85.64 "cd domains/peru-horse-360798.hostingersite.com/public_html && git pull origin master && composer install --no-dev --optimize-autoloader && php artisan migrate --force && php artisan config:cache && php artisan route:cache"
