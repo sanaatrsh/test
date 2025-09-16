@@ -29,7 +29,14 @@ jobs:
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.7.0
         with:
-          ssh-private-key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDJ01b8Knqq+6sIMb3DuLmwKDQah75LY83so+1fDMlPQAsQ+XSGyH+AYPDvJAWN5HLpgUSJ1L3DSkYmvf/w6pA3yz+VNYofRBNPij2aK+qPRscU+5gHQD2VemqKp3UahM+ERWhtHbldhvaZPqVRqXcHN5Ze8P1iYfCO69jU8bNlWl7VZzgBQkEtE12K1XcVIXKDuK5Z/+ar2J+M6/wtKOfpeLLygcj9K6v+Gl3irEGk5NLcvvm+ZAbISM0WwnHAUl5MEVrnJbMMGws5dzx48McLFTv4MzAvmJFrPDuQh7lhRMpRFogjRbhcgcwgF1rdKzXJcBlKqrVZ4HEl3MVsrO8bga5Op4ObinryAN+p2XaPWFcEBmACRLWgdQ92nvlVQSog6LRcUjBvpm44LigcKCR0th4i4U1BqaUhPmUSepiL9JtU6m+IA/3SzRj/y8V4Ciu2gxEaF47Ajj/5LGTe7He3inMynmJXH+L3I280qVIAxADzwX8CFJ708VhQZAffwfE= u629306199@us-bos-web1712.main-hosting.eu
+          ssh-private-key: |
+            -----BEGIN OPENSSH PRIVATE KEY-----
+            b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+            QyNTUxOQAAACAGJ1nR9dIOSAaMSWT0rtqGZKIU8b4mIGOp4wEf3IVvZgAAAKA/V6UaP1el
+            GgAAAAtzc2gtZWQyNTUxOQAAACAGJ1nR9dIOSAaMSWT0rtqGZKIU8b4mIGOp4wEf3IVvZg
+            AAAEBGEwCbDICm1o7giM5O28lr389qXQpcBm5l3GiWpGNUQQYnWdH10g5IBoxJZPSu2oZk
+            ohTxviYgY6njAR/chW9mAAAAFnNhbmFhdHJhc2gwOUBnbWFpbC5jb20BAgMEBQYH
+            -----END OPENSSH PRIVATE KEY-----
 
       # 5️⃣ نشر الكود على Hostinger
       - name: Deploy to Hostinger
