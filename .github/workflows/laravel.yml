@@ -31,12 +31,55 @@ jobs:
         with:
           ssh-private-key: |
             -----BEGIN OPENSSH PRIVATE KEY-----
-            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
+            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
             -----END OPENSSH PRIVATE KEY-----
+
 
       # 5️⃣ إضافة Hostinger إلى known_hosts
       - name: Add Hostinger to known_hosts
